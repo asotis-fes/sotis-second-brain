@@ -1,0 +1,12 @@
+Dug into the mapper piece. There are two separate things going on here.
+
+1) The tenant mapping (100001 vs 100044) — this is a real bug and it's fixable, but it's not fully resolved yet on our side. Two things need to happen: (a) the site->tenant map our ledger reads still needs to pick up 612131 -> 100044 (right now the CDE map still shows it with no tenant, and the MDE map has no row for it yet), and (b) there's a hardcoded list of tenant IDs in the ledger model that doesn't include 100044 — so even once the map is fixed, the ledger would still default 612131 back to 100001 until we add 100044 to that list. That's a one-line dbt change on our end. Once both are in, new Colts earns get the right tenant, and we can reprocess the handful of existing rows (no full ledger/EBM refresh needed — that's a much bigger/riskier operation than this warrants).
+
+2) The bigger thing — tracking redemption of the Colts bonus. This part isn't a bug, it's how the matcher works, and it's worth being clear on before the codes go out. FanCash redemption is FIFO: when someone spends, we consume their oldest-expiring FanCash first. So if a recipient already has other FanCash, their spend gets attributed to that older balance, and the Colts bonus sits unredeemed until it's their oldest (or it expires). We saw exactly this in the test — Daniel spent $100.25 and it drew down an older $1,816 regular earn; the Colts bonus was never touched. So the earn_burn_mapper will NOT reliably show "this person redeemed their Colts FC" for anyone who holds other FanCash. Fixing the tenant bug does not change that.
+
+What that means practically:
+- If what you need is "how much of the $1.5M was issued / is still outstanding / expired unused" — that we CAN track reliably today, off the bonus FanCash balance (BONUS_FANCASH + loyalty_state), independent of FIFO. That's usually what a partnership report wants. Happy to build that view.
+- If you need the bonus specifically consumed first, the cleanest lever is issuing it with a shorter expiration than normal earns — then FIFO burns it first for most recipients. No code change.
+- Making the matcher always burn bonus before regular FanCash is possible but it re-attributes redemptions for everyone, so that's a product decision, not a quick fix.
+
+Net: tenant bug is fixable (map + one-line allowlist + reprocess), and I'd steer the tracking toward the issuance/outstanding view rather than trying to prove per-redemption attribution, which FIFO won't give us cleanly. Let me know which direction you want and I'll get it moving.

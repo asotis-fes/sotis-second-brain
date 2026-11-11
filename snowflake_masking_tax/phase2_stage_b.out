@@ -1,0 +1,1088 @@
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE DATABASE FES_USERS;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE SCHEMA ALEX_SOTIS;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SET WAREHOUSE_SIZE = 'SMALL';
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER SESSION SET USE_CACHED_RESULT = FALSE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+GRANT USAGE ON WAREHOUSE FDE_DEVELOPER_SM_WH TO ROLE TEST_PII_READER_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+GRANT USAGE ON WAREHOUSE FDE_DEVELOPER_SM_WH TO ROLE TEST_PII_EXCLUDED_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+SELECT CURRENT_ROLE() AS r, CURRENT_WAREHOUSE() AS w,
+       CURRENT_SECONDARY_ROLES() AS sr;
++--------------------------------------------------------------+
+| R            | W                   | SR                      |
+|--------------+---------------------+-------------------------|
+| ACCOUNTADMIN | FDE_DEVELOPER_SM_WH | {"roles":"","value":""} |
++--------------------------------------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+BEGIN
+    ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+    RETURN 'suspended';
+EXCEPTION
+    WHEN OTHER THEN RETURN 'already suspended (ok)';
+END;
+$$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+DECLARE
+    n INTEGER DEFAULT 10;
+    i INTEGER DEFAULT 1;
+    base_tag STRING DEFAULT 'mtax|phase=p2|variant=BASELINE|q=Q1|role=ADMIN';
+    rep_tag STRING;
+BEGIN
+    WHILE (i <= n) DO
+        rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+        EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+        EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+        i := i + 1;
+    END WHILE;
+    RETURN 'cell 01 done';
+END;
+$$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 01 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_NULL_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_NULL|q=Q1|role=ADMIN';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 02 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 02 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_HASH_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_HASH|q=Q1|role=ADMIN';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 03 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 03 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_READER_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND|q=Q1|role=READER';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 04 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 04 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_EXCLUDED_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND|q=Q1|role=EXCLUDED';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 05 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 05 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_ISR_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_READER_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND_ISR|q=Q1|role=READER';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 06 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 06 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_ISR_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_EXCLUDED_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND_ISR|q=Q1|role=EXCLUDED';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT MAX(LENGTH(FANGRAPH_EMAIL)) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 07 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 07 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+BEGIN
+    ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+    RETURN 'suspended';
+EXCEPTION
+    WHEN OTHER THEN RETURN 'already suspended (ok)';
+END;
+$$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+DECLARE
+    n INTEGER DEFAULT 10;
+    i INTEGER DEFAULT 1;
+    base_tag STRING DEFAULT 'mtax|phase=p2|variant=BASELINE|q=Q2|role=ADMIN';
+    rep_tag STRING;
+BEGIN
+    WHILE (i <= n) DO
+        rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+        EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+        EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+        i := i + 1;
+    END WHILE;
+    RETURN 'cell 08 done';
+END;
+$$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 08 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_NULL_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_NULL|q=Q2|role=ADMIN';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 09 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 09 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_HASH_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_HASH|q=Q2|role=ADMIN';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 10 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 10 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_READER_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND|q=Q2|role=READER';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 11 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 11 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_EXCLUDED_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND|q=Q2|role=EXCLUDED';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 12 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 12 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_ISR_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_READER_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND_ISR|q=Q2|role=READER';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 13 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 13 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL SET MASKING POLICY FES_USERS.ALEX_SOTIS.P_COND_ISR_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    BEGIN
+        ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+        RETURN 'suspended';
+    EXCEPTION
+        WHEN OTHER THEN RETURN 'already suspended (ok)';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE TEST_PII_EXCLUDED_20260610A;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+    DECLARE
+        n INTEGER DEFAULT 10;
+        i INTEGER DEFAULT 1;
+        base_tag STRING DEFAULT 'mtax|phase=p2|variant=P_COND_ISR|q=Q2|role=EXCLUDED';
+        rep_tag STRING;
+    BEGIN
+        WHILE (i <= n) DO
+            rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+            EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+            EXECUTE IMMEDIATE 'SELECT COUNT(DISTINCT FANGRAPH_EMAIL) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A';
+            i := i + 1;
+        END WHILE;
+        RETURN 'cell 14 done';
+    END;
+    $$;
++-----------------+
+| anonymous block |
+|-----------------|
+| cell 14 done    |
++-----------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+ALTER TABLE FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A MODIFY COLUMN FANGRAPH_EMAIL UNSET MASKING POLICY;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+BEGIN
+    ALTER WAREHOUSE FDE_DEVELOPER_SM_WH SUSPEND;
+    RETURN 'suspended';
+EXCEPTION
+    WHEN OTHER THEN RETURN 'already suspended (ok)';
+END;
+$$;
++-----------------+
+| anonymous block |
+|-----------------|
+| suspended       |
++-----------------+
+USE SECONDARY ROLES NONE;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE ROLE ACCOUNTADMIN;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+USE WAREHOUSE FDE_DEVELOPER_SM_WH;
++----------------------------------+
+| status                           |
+|----------------------------------|
+| Statement executed successfully. |
++----------------------------------+
+EXECUTE IMMEDIATE $$
+DECLARE
+    n INTEGER DEFAULT 10;
+    i INTEGER DEFAULT 1;
+    base_tag STRING DEFAULT 'mtax|phase=p2|variant=BASELINE|q=Q3|role=ADMIN';
+    rep_tag STRING;
+BEGIN
+    WHILE (i <= n) DO
+        rep_tag := base_tag || '|rep=' || LPAD(i::STRING, 2, '0');
+        EXECUTE IMMEDIATE 'ALTER SESSION SET QUERY_TAG = ''' || rep_tag || '''';
+        EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM FES_USERS.ALEX_SOTIS.MTAX_FG_20260610A WHERE FANGRAPH_EMAIL = 'NEVER_MATCH_FOR_MTAX_TEST@example.com'';
+        i := i + 1;
+    END WHILE;
+    RETURN 'cell 15 done';
+END;
+$$;

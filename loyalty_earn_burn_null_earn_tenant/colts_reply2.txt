@@ -1,0 +1,9 @@
+Good questions, and the expiry one actually matters a lot here.
+
+1) On the 1-day expiry — if that's the intent, it basically solves the FIFO concern. FIFO consumes the soonest-expiring FanCash first, so a 1-day bonus would almost always be the first thing burned (it expires way before someone's regular FanCash, which is ~1 year out). It'd get redeemed first and track cleanly, and anything not spent in the window just expires — so you'd get a clean issued / redeemed / expired picture.
+
+BUT — heads up: the test earn was NOT issued with a 1-day expiry. Daniel's $0.25 Colts bonus was created 8/13 and expires 8/13/2027 — a full year. That's why FIFO passed it over in favor of an older earn. So before the codes go out, someone should confirm with whoever configures issuance that the expiry is actually being set to 1 day, because right now it's coming through as 365 days. If we get that to 1 day, the tracking concern I raised largely goes away.
+
+2) On bonus FC only showing as ADD when redeemed — that's not quite how it works. The ADD (earn) is written when the bonus is CLAIMED, not when it's redeemed. Daniel's shows up as an ADD at 15:34 on 8/13 with reason "Claim bonus fancash" — that's the claim event. Redemption is a separate REDEEM record that links back to whichever earn got consumed, and that only appears when it's actually spent. So an ADD with no matching REDEEM just means "claimed but not yet redeemed" (in Daniel's case, spent-but-FIFO-attributed-it-to-an-older-earn). The earn_burn_mapper is the table that only holds earns once they've been redeemed — that's probably where the "only shows when redeemed" idea comes from, and it's why the mapper is empty for this one.
+
+Net: fix the tenant mapping (real bug), and confirm the 1-day expiry is actually being applied — if it is, the redemption tracking should work fine on its own.

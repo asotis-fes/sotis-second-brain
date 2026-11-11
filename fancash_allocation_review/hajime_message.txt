@@ -1,0 +1,62 @@
+Hey Hajime — allocation output looks clean. One coverage gap I don't think the doc covers: ~12.4k
+non-test accounts have a positive fancash_balance but no row at all (zero ledger-remaining — earns past
+per-txn expiry or fully redeemed). ~$45k, small/dispersed. What does loyalty's loader do with a
+positive-balance account missing from the file — default it to an opco or leave it unattributed?
+
+Breakdown query (3XL):
+
+USE WAREHOUSE FDE_DEVELOPER_3XL_WH;
+WITH test_accounts AS (
+  SELECT DISTINCT loyalty_account_id
+  FROM loyalty.loyalty_core.loyalty_analytics_ledger WHERE is_test_txn = 1
+),
+bal AS (
+  SELECT loyalty_account_id,
+    CASE WHEN fancash_expiration IS NOT NULL AND cast(fancash_expiration AS date) < current_date THEN 0
+         ELSE coalesce(fancash_balance,0) END AS balance
+  FROM loyalty.loyalty_core.loyalty_balance
+  QUALIFY row_number() OVER (PARTITION BY loyalty_account_id ORDER BY fancash_updated_timestamp DESC) = 1
+),
+pos AS (SELECT loyalty_account_id, balance FROM bal WHERE balance > 0),
+missing AS (
+  SELECT p.loyalty_account_id, p.balance
+  FROM pos p
+  LEFT JOIN LOYALTY.FANCASH.ALLOCATION_20260908 a ON p.loyalty_account_id = a.loyalty_id
+  LEFT JOIN test_accounts t ON p.loyalty_account_id = t.loyalty_account_id
+  WHERE a.loyalty_id IS NULL AND t.loyalty_account_id IS NULL
+),
+led AS (
+  SELECT l.loyalty_account_id, l.loyalty_txn_id,
+    sum(CASE WHEN l.txn_status='ADD' AND l.loyalty_txn_reason!='reconcile_negative' THEN l.txn_amount ELSE 0 END) AS added,
+    sum(CASE WHEN l.txn_status ILIKE '%VOID%'   THEN l.txn_amount ELSE 0 END) AS voided,
+    sum(CASE WHEN l.txn_status ILIKE '%REDEEM%' THEN l.txn_amount ELSE 0 END) AS redeemed,
+    max(l.loyalty_expiration) AS eff_expiry,
+    max(CASE WHEN l.txn_status='ADD' THEN l.creation_time END) AS max_add_time
+  FROM loyalty.loyalty_core.loyalty_analytics_ledger l
+  JOIN missing m ON l.loyalty_account_id = m.loyalty_account_id
+  WHERE l.creation_time >= '2023-01-01'
+  GROUP BY 1,2
+),
+per_acct AS (
+  SELECT loyalty_account_id,
+    sum(added) AS added_2023,
+    sum(greatest(added - voided - redeemed,0)) AS rem_ignore_expiry,
+    sum(CASE WHEN coalesce(eff_expiry > current_timestamp(), TRUE)
+             THEN greatest(added - voided - redeemed,0) ELSE 0 END) AS rem_after_expiry,
+    max(max_add_time) AS max_add_time
+  FROM led GROUP BY 1
+)
+SELECT
+  CASE
+    WHEN pa.loyalty_account_id IS NULL          THEN 'A: no 2023+ ledger rows'
+    WHEN pa.added_2023 = 0                        THEN 'A2: 2023+ rows, no ADDs'
+    WHEN pa.rem_ignore_expiry <= 0              THEN 'B: fully consumed (redeem/void)'
+    WHEN pa.rem_after_expiry  <= 0              THEN 'C: dropped by per-txn expiry gate'
+    WHEN pa.max_add_time >= '2026-09-08'        THEN 'D: snapshot drift (earned today)'
+    ELSE 'D2: should-appear (investigate)'
+  END AS drop_reason,
+  count(*) AS accts,
+  sum(m.balance)::number(18,2) AS dollars
+FROM missing m
+LEFT JOIN per_acct pa ON m.loyalty_account_id = pa.loyalty_account_id
+GROUP BY 1 ORDER BY dollars DESC;

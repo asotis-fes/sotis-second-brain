@@ -1,0 +1,2432 @@
+{
+  "classification_result": {
+    "AAIA_ADDRESS": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [
+          {
+            "coverage": 0.46,
+            "semantic_category": "US_STREET_ADDRESS"
+          },
+          {
+            "coverage": 0.46,
+            "semantic_category": "CA_STREET_ADDRESS"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "STREET_ADDRESS",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "STREET_ADDRESS"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_ADDR_STREET": {
+      "alternates": []
+    },
+    "AAIA_AGE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "AGE",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "AGE"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_AUTO_RACING_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_BASEBALL": {
+      "alternates": []
+    },
+    "AAIA_BASEBALL_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_BASKETBALL": {
+      "alternates": []
+    },
+    "AAIA_BASKETBALL_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_CITY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.38,
+        "details": [
+          {
+            "coverage": 0.38,
+            "semantic_category": "US_CITY"
+          },
+          {
+            "coverage": 0.12,
+            "semantic_category": "CA_CITY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "CITY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "CITY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_COLLECTIBLES_PURCHASES_TOTAL_CO": {
+      "alternates": []
+    },
+    "AAIA_EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_FIRST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_FOOTBALL": {
+      "alternates": []
+    },
+    "AAIA_FOOTBALL_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_GAMBLING": {
+      "alternates": []
+    },
+    "AAIA_GAMBLING_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_GAMES_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_GENDER": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "GENDER",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "GENDER"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_GOLF": {
+      "alternates": []
+    },
+    "AAIA_GOLF_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_HAS_CHILDREN_HH": {
+      "alternates": []
+    },
+    "AAIA_HOCKEY": {
+      "alternates": []
+    },
+    "AAIA_HOCKEY_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_HOUSEHOLD_ID": {
+      "alternates": []
+    },
+    "AAIA_ID": {
+      "alternates": []
+    },
+    "AAIA_INCOME_HH": {
+      "alternates": []
+    },
+    "AAIA_INCOME_LEVELS": {
+      "alternates": []
+    },
+    "AAIA_INCOME_MIDPTS_HH": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.44,
+        "details": [],
+        "privacy_category": "SENSITIVE",
+        "semantic_category": "SALARY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "SALARY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "SENSITIVE"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.44
+    },
+    "AAIA_INVESTMENT_TYPE": {
+      "alternates": []
+    },
+    "AAIA_LAST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.42,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_MEDIAN_INCOME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.44,
+        "details": [],
+        "privacy_category": "SENSITIVE",
+        "semantic_category": "SALARY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "SALARY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "SENSITIVE"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.44
+    },
+    "AAIA_NET_WORTH_HH": {
+      "alternates": []
+    },
+    "AAIA_NET_WORTH_MIDPT_HH": {
+      "alternates": []
+    },
+    "AAIA_OWNS_INVESTMENTS": {
+      "alternates": []
+    },
+    "AAIA_OWNS_STOCKS_AND_BONDS": {
+      "alternates": []
+    },
+    "AAIA_PHONE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.4,
+        "details": [
+          {
+            "coverage": 0.4,
+            "semantic_category": "US_PHONE_NUMBER"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "PHONE_NUMBER",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "PHONE_NUMBER"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.4
+    },
+    "AAIA_PREMIUM_CARD": {
+      "alternates": []
+    },
+    "AAIA_PREMIUM_INCOME_HH": {
+      "alternates": []
+    },
+    "AAIA_PREMIUM_INCOME_MIDPT_HH": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.12,
+        "details": [],
+        "privacy_category": "SENSITIVE",
+        "semantic_category": "SALARY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "SALARY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "SENSITIVE"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.12
+    },
+    "AAIA_READING_SPORTS": {
+      "alternates": []
+    },
+    "AAIA_SOCCER": {
+      "alternates": []
+    },
+    "AAIA_SOCCER_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_SPORTS_PURCHASES_TOTAL_CO": {
+      "alternates": []
+    },
+    "AAIA_STATE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [
+          {
+            "coverage": 0.46,
+            "semantic_category": "US_STATE_OR_TERRITORY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "ADMINISTRATIVE_AREA_1",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "ADMINISTRATIVE_AREA_1"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "AAIA_TENNIS": {
+      "alternates": []
+    },
+    "AAIA_TENNIS_AFFINITY": {
+      "alternates": []
+    },
+    "AAIA_ZIP": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [
+          {
+            "coverage": 0.46,
+            "semantic_category": "US_POSTAL_CODE"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "POSTAL_CODE",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "POSTAL_CODE"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "ACCOUNT_IDS": {
+      "alternates": []
+    },
+    "ACCOUNT_IDS_CNT": {
+      "alternates": []
+    },
+    "COLLECT_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_COUNTRY": {
+      "alternates": []
+    },
+    "COLLECT_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "COLLECT_EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "COLLECT_EMAIL_OPT_IN": {
+      "alternates": []
+    },
+    "COLLECT_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "COLLECT_FIRST_BID_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_FIRST_LISTED_AT_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_FIRST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "COLLECT_FIRST_PURCHASED_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_FIRST_SOLD_AT_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_GMV_LIFETIME": {
+      "alternates": []
+    },
+    "COLLECT_IS_FROZEN": {
+      "alternates": []
+    },
+    "COLLECT_ITEMS_PURCHASED_LIFETIME": {
+      "alternates": []
+    },
+    "COLLECT_LAST_ACTIVE_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_LAST_LISTED_AT_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_LAST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "COLLECT_LAST_PURCHASED_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_LAST_SOLD_AT_TIMESTAMP": {
+      "alternates": []
+    },
+    "COLLECT_ORDERS_LIFETIME": {
+      "alternates": []
+    },
+    "COLLECT_PHONE": {
+      "alternates": []
+    },
+    "COLLECT_PUSH_OPT_IN": {
+      "alternates": []
+    },
+    "COLLECT_REVENUE_LIFETIME": {
+      "alternates": []
+    },
+    "COLLECT_SMS_OPT_IN": {
+      "alternates": []
+    },
+    "COLLECT_STATE": {
+      "alternates": []
+    },
+    "COLLECT_TENANT_FAN_ID": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_GMV_SOLD": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_LISTINGS": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_NUMBER_OF_ITEMS_IN_VAULT": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_PAID": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_REVENUE_SOLD": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_SALES": {
+      "alternates": []
+    },
+    "COLLECT_TOTAL_VALUE_OF_ITEMS_IN_VAULT": {
+      "alternates": []
+    },
+    "COLLECT_USER_ID": {
+      "alternates": []
+    },
+    "COLLECT_VAULT_TOTAL_SUBMISSIONS": {
+      "alternates": []
+    },
+    "COMMERCE_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "COMMERCE_ACCOUNT_DIRECTORY_ID": {
+      "alternates": []
+    },
+    "COMMERCE_ACCOUNT_EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.86,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.98
+    },
+    "COMMERCE_ACCOUNT_LAST_MODIFIED_TIMESTAMP": {
+      "alternates": []
+    },
+    "COMMERCE_ACCOUNT_TYPE": {
+      "alternates": []
+    },
+    "COMMERCE_BILLING_ADDRESS_ID": {
+      "alternates": []
+    },
+    "COMMERCE_BILLING_CITY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.42,
+        "details": [
+          {
+            "coverage": 0.42,
+            "semantic_category": "US_CITY"
+          },
+          {
+            "coverage": 0.22,
+            "semantic_category": "CA_CITY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "CITY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "CITY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_BILLING_COUNTRY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.52,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "COUNTRY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "COUNTRY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_BILLING_STATE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.42,
+        "details": [
+          {
+            "coverage": 0.42,
+            "semantic_category": "US_STATE_OR_TERRITORY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "ADMINISTRATIVE_AREA_1",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "ADMINISTRATIVE_AREA_1"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.5
+    },
+    "COMMERCE_BILLING_STREET_ADDRESS1": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.46,
+        "details": [
+          {
+            "coverage": 0.46,
+            "semantic_category": "US_STREET_ADDRESS"
+          },
+          {
+            "coverage": 0.46,
+            "semantic_category": "CA_STREET_ADDRESS"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "STREET_ADDRESS",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "STREET_ADDRESS"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_BILLING_STREET_ADDRESS2": {
+      "alternates": []
+    },
+    "COMMERCE_BILLING_ZIP_CODE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.42,
+        "details": [
+          {
+            "coverage": 0.42,
+            "semantic_category": "US_POSTAL_CODE"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "POSTAL_CODE",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "POSTAL_CODE"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_BILLING_ZIP_CODE_EXTENSION": {
+      "alternates": []
+    },
+    "COMMERCE_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "COMMERCE_DISCOUNT_TOTAL": {
+      "alternates": []
+    },
+    "COMMERCE_FANCASH_TOTAL": {
+      "alternates": []
+    },
+    "COMMERCE_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "COMMERCE_FAN_SEGMENT": {
+      "alternates": []
+    },
+    "COMMERCE_FIRST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.5,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_FIRST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "COMMERCE_HASHED_EMAIL": {
+      "alternates": []
+    },
+    "COMMERCE_INTERNAL_SURROGATE_KEY": {
+      "alternates": []
+    },
+    "COMMERCE_LAST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.44,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "COMMERCE_LAST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "COMMERCE_LAST_UPDATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "COMMERCE_MAILABLE_FLAG": {
+      "alternates": []
+    },
+    "COMMERCE_MAILABLE_FLAG_OPT_OUT_DATE": {
+      "alternates": []
+    },
+    "COMMERCE_MAILABLE_SITE_COUNT": {
+      "alternates": []
+    },
+    "COMMERCE_MOBILE_NUMBER": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.38,
+        "details": [
+          {
+            "coverage": 0.02,
+            "semantic_category": "CA_PHONE_NUMBER"
+          },
+          {
+            "coverage": 0.12,
+            "semantic_category": "UK_PHONE_NUMBER"
+          },
+          {
+            "coverage": 0.38,
+            "semantic_category": "US_PHONE_NUMBER"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "PHONE_NUMBER",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "PHONE_NUMBER"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.46
+    },
+    "COMMERCE_NFL_ONLY": {
+      "alternates": []
+    },
+    "COMMERCE_NFL_REGULATION": {
+      "alternates": []
+    },
+    "COMMERCE_NOT_MAILABLE_SITE_COUNT": {
+      "alternates": []
+    },
+    "COMMERCE_ORDER_AMOUNT_TOTAL": {
+      "alternates": []
+    },
+    "COMMERCE_ORDER_COUNT": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_MLB": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_MLB_TEAMS": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NBA": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NBA_TEAMS": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NCAA": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NCAA_TEAMS": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NFL": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NFL_TEAMS": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NHL": {
+      "alternates": []
+    },
+    "COMMERCE_PREFERENCE_NHL_TEAMS": {
+      "alternates": []
+    },
+    "COMMERCE_PRODUCT_LEAGUE": {
+      "alternates": []
+    },
+    "COMMERCE_PRODUCT_PLAYER_DESCRIPTION": {
+      "alternates": []
+    },
+    "COMMERCE_PRODUCT_PLAYER_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "MEDIUM",
+        "coverage": 0.04,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.08
+    },
+    "COMMERCE_PRODUCT_TEAM": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_ADDRESS_ID": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_CITY": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_COUNTRY": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_STATE": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_STREET_ADDRESS1": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_STREET_ADDRESS2": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_ZIP_CODE": {
+      "alternates": []
+    },
+    "COMMERCE_SHIPPING_ZIP_CODE_EXTENSION": {
+      "alternates": []
+    },
+    "COMMERCE_SITE_COUNT": {
+      "alternates": []
+    },
+    "COMMERCE_SUPER_SITE_RESTRICTION": {
+      "alternates": []
+    },
+    "COMMERCE_SURROGATE_ACCOUNT_KEY": {
+      "alternates": []
+    },
+    "COMMERCE_TENANT_FAN_IDS": {
+      "alternates": []
+    },
+    "COMMERCE_TENANT_FAN_IDS_CNT": {
+      "alternates": []
+    },
+    "COMMERCE_USER_ACCOUNT_ID": {
+      "alternates": []
+    },
+    "EMAIL_COUNT": {
+      "alternates": []
+    },
+    "EVENTS_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "EVENTS_ADDRESS_1": {
+      "alternates": []
+    },
+    "EVENTS_ADDRESS_2": {
+      "alternates": []
+    },
+    "EVENTS_CITY": {
+      "alternates": []
+    },
+    "EVENTS_COUNTRY": {
+      "alternates": []
+    },
+    "EVENTS_CUSTOMER_ID": {
+      "alternates": []
+    },
+    "EVENTS_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "EVENTS_EMAIL": {
+      "alternates": []
+    },
+    "EVENTS_FANFEST_ATTENDEE": {
+      "alternates": []
+    },
+    "EVENTS_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "EVENTS_FIRST_NAME": {
+      "alternates": []
+    },
+    "EVENTS_LAST_NAME": {
+      "alternates": []
+    },
+    "EVENTS_MARKETING_OPT_IN": {
+      "alternates": []
+    },
+    "EVENTS_ORDER_AMOUNT_TOTAL": {
+      "alternates": []
+    },
+    "EVENTS_ORDER_COUNT": {
+      "alternates": []
+    },
+    "EVENTS_PHONE": {
+      "alternates": []
+    },
+    "EVENTS_STATE": {
+      "alternates": []
+    },
+    "EVENTS_TOTAL_EVENTS_ATTENDED": {
+      "alternates": []
+    },
+    "EVENTS_TOTAL_TICKETS_PURCHASED": {
+      "alternates": []
+    },
+    "EVENTS_WWE_ATTENDEE": {
+      "alternates": []
+    },
+    "EVENTS_ZIP": {
+      "alternates": []
+    },
+    "FANAPP_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_CHALLENGE_COMPONENT_VIEWS": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_DISCOUNT_TOTAL": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_FANCASH_TOTAL": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_FIRST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_LAST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_ORDER_AMOUNT_TOTAL": {
+      "alternates": []
+    },
+    "FANAPP_COMMERCE_ORDER_COUNT": {
+      "alternates": []
+    },
+    "FANAPP_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "FANAPP_F5JACKPOT_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_F5JACKPOT_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_F5JACKPOT_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_F5JACKPOT_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_FANATICS5_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_FANATICS5_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_FANATICS5_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_FANATICS5_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "FANAPP_FIRST_LOGIN_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_GAMES_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_GAMES_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_GAMES_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_GAMES_TIMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_LAST_LOGIN_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_MLB_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_MLB_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_NBA_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_NBA_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_NCAA_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_NCAA_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_NFL_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_NFL_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_NHL_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_NHL_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9V2_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9V2_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9V2_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9V2_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_PERFECT9_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_QUADGOALS_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_QUADGOALS_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_QUADGOALS_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_QUADGOALS_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_SESSION_LAST_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANAPP_SOCCER_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_SOCCER_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANAPP_SPINTOWIN_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_SPINTOWIN_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_SPINTOWIN_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_SPINTOWIN_TIMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_SURVIVOR_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_SURVIVOR_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_SURVIVOR_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_SURVIVOR_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_TENANT_FAN_IDS": {
+      "alternates": []
+    },
+    "FANAPP_TENANT_FAN_IDS_CNT": {
+      "alternates": []
+    },
+    "FANAPP_TIERED_PICKEM_EVER_WON": {
+      "alternates": []
+    },
+    "FANAPP_TIERED_PICKEM_GAMES_WON": {
+      "alternates": []
+    },
+    "FANAPP_TIERED_PICKEM_LAST_PLAYED_DATE": {
+      "alternates": []
+    },
+    "FANAPP_TIERED_PICKEM_TIMES_PLAYED": {
+      "alternates": []
+    },
+    "FANAPP_WWE_CAROUSEL_CLICKED_ALL_TIME": {
+      "alternates": []
+    },
+    "FANAPP_WWE_CAROUSEL_CLICKED_L30_DAYS": {
+      "alternates": []
+    },
+    "FANATICS_EMPLOYEE_FLAG": {
+      "alternates": []
+    },
+    "FANATICS_ONE_AMOUNT_TO_NEXT_EARN_TIER": {
+      "alternates": []
+    },
+    "FANATICS_ONE_CURRENT_BALANCE": {
+      "alternates": []
+    },
+    "FANATICS_ONE_CURRENT_TIER": {
+      "alternates": []
+    },
+    "FANATICS_ONE_CURRENT_TIER_ENTRY_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANATICS_ONE_EARN_TIER": {
+      "alternates": []
+    },
+    "FANATICS_ONE_NEXT_EARN_TIER": {
+      "alternates": []
+    },
+    "FANATICS_ONE_TRANSACTION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANGRAPH_ACCOUNT_ACCESS_AVAILABLE": {
+      "alternates": []
+    },
+    "FANGRAPH_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANGRAPH_ADDRESS_1": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.72,
+        "details": [
+          {
+            "coverage": 0.72,
+            "semantic_category": "US_STREET_ADDRESS"
+          },
+          {
+            "coverage": 0.72,
+            "semantic_category": "CA_STREET_ADDRESS"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "STREET_ADDRESS",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "STREET_ADDRESS"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.78
+    },
+    "FANGRAPH_ADDRESS_2": {
+      "alternates": []
+    },
+    "FANGRAPH_AGE_RANGE": {
+      "alternates": []
+    },
+    "FANGRAPH_CITY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.62,
+        "details": [
+          {
+            "coverage": 0.62,
+            "semantic_category": "US_CITY"
+          },
+          {
+            "coverage": 0.28,
+            "semantic_category": "CA_CITY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "CITY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "CITY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.78
+    },
+    "FANGRAPH_COUNTRY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.8,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "COUNTRY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "COUNTRY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.8
+    },
+    "FANGRAPH_DOB": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "DATE_OF_BIRTH",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "DATE_OF_BIRTH"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "FANGRAPH_EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 1,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 1
+    },
+    "FANGRAPH_FIRST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.78,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.8
+    },
+    "FANGRAPH_GENDER": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.52,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "GENDER",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "GENDER"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.52
+    },
+    "FANGRAPH_ID": {
+      "alternates": []
+    },
+    "FANGRAPH_LAST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.72,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.8
+    },
+    "FANGRAPH_LAST_UPDATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANGRAPH_OPTED_INTO_EMAIL_MARKETING": {
+      "alternates": []
+    },
+    "FANGRAPH_PHONE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.6,
+        "details": [
+          {
+            "coverage": 0.6,
+            "semantic_category": "US_PHONE_NUMBER"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "PHONE_NUMBER",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "PHONE_NUMBER"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.68
+    },
+    "FANGRAPH_PHONE_DNC": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_LEAGUE": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_MLB": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_MLB_TEAMS": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NBA": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NBA_TEAMS": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NCAA": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NCAA_TEAMS": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NFL": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NFL_TEAMS": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NHL": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_NHL_TEAMS": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_PLAYER": {
+      "alternates": []
+    },
+    "FANGRAPH_PREFERENCE_TEAM": {
+      "alternates": []
+    },
+    "FANGRAPH_STATE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.68,
+        "details": [
+          {
+            "coverage": 0.68,
+            "semantic_category": "US_STATE_OR_TERRITORY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "ADMINISTRATIVE_AREA_1",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "ADMINISTRATIVE_AREA_1"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.76
+    },
+    "FANGRAPH_ZIP": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.68,
+        "details": [
+          {
+            "coverage": 0.68,
+            "semantic_category": "US_POSTAL_CODE"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "POSTAL_CODE",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "POSTAL_CODE"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.78
+    },
+    "FANID_FIRST_TENANT_CREATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANID_FIRST_TENANT_ID": {
+      "alternates": []
+    },
+    "FANID_LAST_TENANT_MODIFIED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FANID_PRIVATE_FAN_IDS": {
+      "alternates": []
+    },
+    "FANID_PRIVATE_FAN_IDS_CNT": {
+      "alternates": []
+    },
+    "FANID_TENANT_COUNT": {
+      "alternates": []
+    },
+    "FAN_KEYS": {
+      "alternates": []
+    },
+    "FAN_KEYS_CNT": {
+      "alternates": []
+    },
+    "FAN_KEY_CREATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_ACCOUNT_DELETED": {
+      "alternates": []
+    },
+    "FBG_ACCOUNT_ID": {
+      "alternates": []
+    },
+    "FBG_ADDRESS1": {
+      "alternates": []
+    },
+    "FBG_ADDRESS2": {
+      "alternates": []
+    },
+    "FBG_BET_LIMIT": {
+      "alternates": []
+    },
+    "FBG_CASINO_FIRST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_CASINO_LAST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_CASINO_MAX_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_CASINO_MIN_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_CASINO_NUMBER_BETS_PLACED": {
+      "alternates": []
+    },
+    "FBG_COUNTRY": {
+      "alternates": []
+    },
+    "FBG_COUNTRY_CODE": {
+      "alternates": []
+    },
+    "FBG_CURRENT_JURISDICTIONS_ID": {
+      "alternates": []
+    },
+    "FBG_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "FBG_EMAIL": {
+      "alternates": []
+    },
+    "FBG_EMPLOYEE_FLAG": {
+      "alternates": []
+    },
+    "FBG_EXCLUSION": {
+      "alternates": []
+    },
+    "FBG_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "FBG_FIRST_LOGIN_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_FIRST_NAME": {
+      "alternates": []
+    },
+    "FBG_FIRST_TRANSACTION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_HIGH_LEVEL_SEGMENT": {
+      "alternates": []
+    },
+    "FBG_IS_DATA_SHARING": {
+      "alternates": []
+    },
+    "FBG_IS_PB_USER": {
+      "alternates": []
+    },
+    "FBG_JURISDICTION_NAME": {
+      "alternates": []
+    },
+    "FBG_KYC_COMPLETED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_LAST_LOGIN_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_LAST_MODIFIED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_LAST_NAME": {
+      "alternates": []
+    },
+    "FBG_LAST_TRANSACTION_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_LIVE_BET_LIMIT": {
+      "alternates": []
+    },
+    "FBG_NAME": {
+      "alternates": []
+    },
+    "FBG_ONLINE_SPORTSBOOK_FIRST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_ONLINE_SPORTSBOOK_LAST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_ONLINE_SPORTSBOOK_MAX_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_ONLINE_SPORTSBOOK_MIN_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_ONLINE_SPORTSBOOK_NUMBER_BETS_PLACED": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_MLB": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_MLB_TEAMS": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NBA": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NBA_TEAMS": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NCAA": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NCAA_TEAMS": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NFL": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NFL_TEAMS": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NHL": {
+      "alternates": []
+    },
+    "FBG_PREFERENCE_NHL_TEAMS": {
+      "alternates": []
+    },
+    "FBG_RETAIL_SPORTSBOOK_FIRST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_RETAIL_SPORTSBOOK_LAST_BET_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_RETAIL_SPORTSBOOK_MAX_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_RETAIL_SPORTSBOOK_MIN_BET_AMOUNT": {
+      "alternates": []
+    },
+    "FBG_RETAIL_SPORTSBOOK_NUMBER_BETS_PLACED": {
+      "alternates": []
+    },
+    "FBG_SEGMENT": {
+      "alternates": []
+    },
+    "FBG_STATE": {
+      "alternates": []
+    },
+    "FBG_STATUS": {
+      "alternates": []
+    },
+    "FBG_TENANT_FAN_IDS": {
+      "alternates": []
+    },
+    "FBG_TENANT_FAN_IDS_CNT": {
+      "alternates": []
+    },
+    "FBG_TOTAL_TRANSACTION_COUNT": {
+      "alternates": []
+    },
+    "FBG_TOWN": {
+      "alternates": []
+    },
+    "FBG_TRANSACTION_TOTAL": {
+      "alternates": []
+    },
+    "FBG_UNSUBSCRIBED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_VIP_ID": {
+      "alternates": []
+    },
+    "FBG_VIP_TIERS": {
+      "alternates": []
+    },
+    "FBG_VIP_TIER_MODIFIED_TIMESTAMP": {
+      "alternates": []
+    },
+    "FBG_XSELL_CLICKS": {
+      "alternates": []
+    },
+    "FBG_XSELL_VIEWS": {
+      "alternates": []
+    },
+    "FBG_ZIP_CODE": {
+      "alternates": []
+    },
+    "LIVE_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "LIVE_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "LIVE_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "LIVE_FIRST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "LIVE_GIVEAWAY_COUNT": {
+      "alternates": []
+    },
+    "LIVE_LAST_ORDER_TIMESTAMP": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_LEAGUE": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_MLB": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_MLB_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_MLS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_MLS_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NASCAR": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NASCAR_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NBA": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NBA_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NFL": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NFL_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NHL": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_NHL_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_PGA": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_PGA_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_TEAM": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_WNBA": {
+      "alternates": []
+    },
+    "LIVE_PREFERENCE_WNBA_TEAMS": {
+      "alternates": []
+    },
+    "LIVE_REFUND_COUNT": {
+      "alternates": []
+    },
+    "LIVE_TENANT_FAN_IDS": {
+      "alternates": []
+    },
+    "LIVE_TENANT_FAN_IDS_CNT": {
+      "alternates": []
+    },
+    "LIVE_TOTAL_GMS": {
+      "alternates": []
+    },
+    "LIVE_TOTAL_REVENUE": {
+      "alternates": []
+    },
+    "LIVE_TOTAL_SHIPPING": {
+      "alternates": []
+    },
+    "LIVE_TOTAL_SPOTS_PURCHASED": {
+      "alternates": []
+    },
+    "LIVE_TOTAL_TAX": {
+      "alternates": []
+    },
+    "LIVE_TRANSACTION_COUNT": {
+      "alternates": []
+    },
+    "SALESFORCE_CONTACT_ID_FBG": {
+      "alternates": []
+    },
+    "SALESFORCE_CONTACT_ID_VIP": {
+      "alternates": []
+    },
+    "SALESFORCE_CONTACT_ID_VIP_TYPE": {
+      "alternates": []
+    },
+    "SALESFORCE_IS_DELETED_ACCOUNT_FBG": {
+      "alternates": []
+    },
+    "SALESFORCE_IS_DELETED_LEAD_FBG": {
+      "alternates": []
+    },
+    "SALESFORCE_LEAD_ID_FBG": {
+      "alternates": []
+    },
+    "SALESFORCE_MEMBER_ID_VIP": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_MLB": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_MLB_TEAMS": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NBA": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NBA_TEAMS": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NCAA": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NCAA_TEAMS": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NFL": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NFL_TEAMS": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NHL": {
+      "alternates": []
+    },
+    "SALESFORCE_PREFERENCE_NHL_TEAMS": {
+      "alternates": []
+    },
+    "TLC_FIRST_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_ADDRESS1": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_ADDRESS2": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_CITY": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_COUNTRY": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_REGION": {
+      "alternates": []
+    },
+    "TOPPS_COM_BILLING_ZIP": {
+      "alternates": []
+    },
+    "TOPPS_COM_CREATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_COM_CUSTOMER_ID": {
+      "alternates": []
+    },
+    "TOPPS_COM_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "TOPPS_COM_DOB": {
+      "alternates": []
+    },
+    "TOPPS_COM_EMAIL": {
+      "alternates": []
+    },
+    "TOPPS_COM_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "TOPPS_COM_FIRST_NAME": {
+      "alternates": []
+    },
+    "TOPPS_COM_GMV_TOTAL": {
+      "alternates": []
+    },
+    "TOPPS_COM_GROSS_TOTAL": {
+      "alternates": []
+    },
+    "TOPPS_COM_LAST_NAME": {
+      "alternates": []
+    },
+    "TOPPS_COM_LEGACY_CUSTOMER_IDS": {
+      "alternates": []
+    },
+    "TOPPS_COM_NET_TOTAL": {
+      "alternates": []
+    },
+    "TOPPS_COM_ORDER_FIRST_DATE": {
+      "alternates": []
+    },
+    "TOPPS_COM_ORDER_LAST_DATE": {
+      "alternates": []
+    },
+    "TOPPS_COM_PHONE": {
+      "alternates": []
+    },
+    "TOPPS_COM_SHIPPING_TOTAL": {
+      "alternates": []
+    },
+    "TOPPS_COM_UPDATED_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_COINS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_FREEMIUM_SOFT_COIN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_FREEMIUM_SOFT_COIN_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_GEMS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_LAST_ACTIVITY_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_PURCHASES_PREMIUM_GEM": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_PURCHASES_PREMIUM_GEM_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_PURCHASES_USD": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_PURCHASES_USD_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_SPEND_AMOUNT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_BASEBALL_SPEND_COHORT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_CITY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [
+          {
+            "coverage": 0.02,
+            "semantic_category": "US_CITY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "CITY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "CITY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "TOPPS_DIGITAL_COUNTRY": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "COUNTRY",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "COUNTRY"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "TOPPS_DIGITAL_CUSTOMER_INDICATOR": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_COINS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_FREEMIUM_SOFT_COIN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_FREEMIUM_SOFT_COIN_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_GEMS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_LAST_ACTIVITY_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_PURCHASES_PREMIUM_GEM": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_PURCHASES_PREMIUM_GEM_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_PURCHASES_USD": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_PURCHASES_USD_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_SPEND_AMOUNT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_DISNEY_SPEND_COHORT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "TOPPS_DIGITAL_EMAIL_OPT_IN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_FAN_INDICATOR": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_COINS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_FREEMIUM_SOFT_COIN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_FREEMIUM_SOFT_COIN_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_GEMS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_LAST_ACTIVITY_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_PURCHASES_PREMIUM_GEM": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_PURCHASES_PREMIUM_GEM_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_PURCHASES_USD": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_PURCHASES_USD_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_SPEND_AMOUNT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_MARVEL_SPEND_COHORT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_COINS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_FREEMIUM_SOFT_COIN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_FREEMIUM_SOFT_COIN_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_GEMS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_LAST_ACTIVITY_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_PURCHASES_PREMIUM_GEM": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_PURCHASES_PREMIUM_GEM_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_PURCHASES_USD": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_PURCHASES_USD_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_SPEND_AMOUNT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STARWARS_SPEND_COHORT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_STATE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.02,
+        "details": [
+          {
+            "coverage": 0.02,
+            "semantic_category": "US_STATE_OR_TERRITORY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "ADMINISTRATIVE_AREA_1",
+        "tags": [
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "ADMINISTRATIVE_AREA_1"
+          },
+          {
+            "tag_applied": false,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.02
+    },
+    "TOPPS_DIGITAL_USERNAME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_USER_IDS": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_USER_IDS_CNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_ACCOUNT_CREATION_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_COINS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_FREEMIUM_SOFT_COIN": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_FREEMIUM_SOFT_COIN_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_GEMS_BALANCE": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_LAST_ACTIVITY_TIMESTAMP": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_PURCHASES_PREMIUM_GEM": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_PURCHASES_PREMIUM_GEM_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_PURCHASES_USD": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_PURCHASES_USD_COUNT": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_SPEND_AMOUNT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_DIGITAL_WWE_SPEND_COHORT_LIFETIME": {
+      "alternates": []
+    },
+    "TOPPS_USER_PROFILE_KEYS": {
+      "alternates": []
+    },
+    "TOPPS_USER_PROFILE_KEYS_CNT": {
+      "alternates": []
+    }
+  }
+}

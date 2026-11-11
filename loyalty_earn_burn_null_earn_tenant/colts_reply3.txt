@@ -1,0 +1,9 @@
+To answer Ben directly: no, bonus is not always redeemed before base. There's no "bonus first" rule in the matcher — it's purely oldest-expiration-first (then oldest creation). So the only way the Colts bonus gets burned first is if it actually expires sooner than the person's other FanCash.
+
+And that's where the problem is: this earn did NOT come through with a 1-day expiry. In both fanflow (the source) and the ledger, Daniel's Colts bonus was created 8/13 and expires 8/13/2027 — 365 days out. So even though it was configured as 1-day, the actual FanCash record has a 1-year expiry. That's why FIFO passed it over — his base FC (an older earn expiring 4/2027) was the soonest-expiring, so it got burned first.
+
+So Rohan's logic is exactly right — IF it were 1-day expiry it should've been burned first. The issue is the 1-day isn't landing on the earn. Two possibilities worth checking on the issuance side:
+- The 1-day might be the code/claim window (how long they have to claim the code), which is separate from how long the FanCash lasts once claimed.
+- Or the FanCash expiry is genuinely supposed to be 1 day and issuance isn't applying it — because what we see on the actual event is 365 days.
+
+Bottom line: if the claimed FanCash actually expires in ~1 day, FIFO will burn it first and this tracks cleanly with no matcher change. Right now it's showing a 1-year expiry, which is why it didn't. Can someone on the issuance/config side confirm what expiry is being set on the FanCash itself (not the code)?

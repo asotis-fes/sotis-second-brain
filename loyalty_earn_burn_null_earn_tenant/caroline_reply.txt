@@ -1,0 +1,7 @@
+Dug into this. The July jump is basically one opco (tenant 100026 / site 610942) - about $372k of the $692k, 19 accounts, mostly Jul 12-13.
+
+Here's the key thing: that site only ever sends authorization holds and voids - no actual earns and no completed (captured) burns at all. The redeem matcher intentionally treats voided authorizations as if they were earns (and as burns), so it ends up manufacturing "redeem" rows out of pure auth/void activity. There's no real earn behind them, which is why earn_tenant_id comes through null. So a big chunk of that $692k - especially the $372k from this site - isn't really burned FanCash, it's authorization-hold noise.
+
+The July timing is just a handful of large-dollar auth holds on 7/12-7/13, not a systemic change. Counts weren't unusual, the dollar amounts were.
+
+Balances aren't affected, and it's not the January incident. The real fix is in how the matcher handles voided authorizations (it shouldn't be turning auth-only activity into burn rows). I'll take that to the loyalty/redeem-matching folks, and add an alert so we catch a spike like this sooner.

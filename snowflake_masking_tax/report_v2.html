@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snowflake Masking Tax — Experiment Matrix (V2)</title>
+<style>
+  :root {
+    --bg: #0b0c0f;
+    --surface: #14161a;
+    --surface-2: #1c1f25;
+    --surface-3: #242830;
+    --border: #2a2e37;
+    --border-soft: #1f232a;
+    --text: #eef0f3;
+    --text-soft: #a3a8b3;
+    --text-faint: #6c7180;
+    --accent: #818cf8;
+    --accent-soft: #4338ca;
+
+    --baseline-bg: #232730;
+    --baseline-fg: #cbd0db;
+    --baseline-border: #353a47;
+
+    --hash-bg: #2d1d08;
+    --hash-fg: #fbbf24;
+    --hash-border: #4d3010;
+
+    --const-bg: #0a2a1c;
+    --const-fg: #6ee7b7;
+    --const-border: #115a3b;
+
+    --null-bg: #1a1840;
+    --null-fg: #c7d2fe;
+    --null-border: #2d2980;
+
+    --cond-bg: #2a1b08;
+    --cond-fg: #fde68a;
+    --cond-border: #5a3a14;
+
+    --plain-bg: #082a2e;
+    --plain-fg: #67e8f9;
+    --plain-border: #0e4a52;
+
+    --status-done: #34d399;
+    --status-pending: #fbbf24;
+
+    --pos: #f87171;
+    --neg: #34d399;
+    --flat: #94a3b8;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(1200px 600px at 50% -200px, rgba(129,140,248,0.06), transparent);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  header.page { margin-bottom: 48px; }
+  header.page h1 {
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #b8bdc9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  header.page p.meta {
+    color: var(--text-soft);
+    margin: 0;
+    font-size: 14px;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: rgba(255,255,255,0.06);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: #e2e4ea;
+  }
+
+  .intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+  }
+  .intro h2 {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin: 0 0 12px;
+  }
+  .intro p { margin: 0 0 10px; color: var(--text-soft); }
+  .intro p:last-child { margin-bottom: 0; }
+
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 26px 28px 22px;
+    border-bottom: 1px solid var(--border-soft);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+  .phase-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .phase-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    background: rgba(129,140,248,0.12);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .phase-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .phase-tagline {
+    color: var(--text-soft);
+    font-size: 14px;
+    margin: 6px 0 0;
+    max-width: 720px;
+  }
+  .phase-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    background: rgba(52,211,153,0.12);
+    color: var(--status-done);
+    border: 1px solid rgba(52,211,153,0.25);
+  }
+  .phase-status.pending {
+    background: rgba(251,191,36,0.12);
+    color: var(--status-pending);
+    border-color: rgba(251,191,36,0.25);
+  }
+  .phase-status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+  }
+
+  .phase-body { padding: 26px 28px 28px; }
+
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .spec {
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .spec dt {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .spec dd {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .spec dd code {
+    font-size: 12.5px;
+    background: rgba(255,255,255,0.04);
+    padding: 1px 4px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin: 22px 0 12px;
+  }
+
+  /* Generic cell */
+  .cell {
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-height: 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border-soft);
+    background: var(--surface-2);
+  }
+  .cell .variant-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+  .cell .label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: var(--text);
+  }
+  .cell .sub {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+  .cell .result {
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+    color: var(--text);
+  }
+
+  .cell.baseline   { background: var(--baseline-bg); border-color: var(--baseline-border); }
+  .cell.baseline .variant-tag { color: #9ca3af; }
+  .cell.null       { background: var(--null-bg); border-color: var(--null-border); }
+  .cell.null .variant-tag { color: var(--null-fg); }
+  .cell.hash       { background: var(--hash-bg); border-color: var(--hash-border); }
+  .cell.hash .variant-tag { color: var(--hash-fg); }
+  .cell.const      { background: var(--const-bg); border-color: var(--const-border); }
+  .cell.const .variant-tag { color: var(--const-fg); }
+  .cell.cond, .cell.cond-isr { background: var(--cond-bg); border-color: var(--cond-border); }
+  .cell.cond .variant-tag, .cell.cond-isr .variant-tag { color: var(--cond-fg); }
+  .cell.plain      { background: var(--plain-bg); border-color: var(--plain-border); }
+  .cell.plain .variant-tag { color: var(--plain-fg); }
+
+  /* Grid layouts */
+  .matrix { display: grid; gap: 10px; }
+  .matrix.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .matrix.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .matrix.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .matrix.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  @media (max-width: 800px) {
+    .matrix.cols-4, .matrix.cols-5 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== Matrix layout: Variant rows × measurement columns + summary ===== */
+  .phase-matrix {
+    display: grid;
+    gap: 10px;
+    align-items: stretch;
+  }
+  /* Default — overridden per phase via inline grid-template-columns */
+  .phase-matrix.m-rep3   { grid-template-columns: 160px repeat(3, 1fr) 200px; }
+  .phase-matrix.m-q3     { grid-template-columns: 220px repeat(3, 1fr) 180px; }
+  .phase-matrix.m-single { grid-template-columns: 220px 1fr 200px; }
+  @media (max-width: 800px) {
+    .phase-matrix { grid-template-columns: 1fr !important; }
+  }
+  .phase-matrix > .col-header {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    padding: 0 0 4px;
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .phase-matrix > .col-header.first { justify-content: flex-start; }
+  .phase-matrix > .col-header.summary { justify-content: flex-end; padding-right: 4px; }
+
+  .phase-row-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 14px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+  }
+  .phase-row-label .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .phase-row-label .formula {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 4px;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+  .phase-row-label.baseline { background: var(--baseline-bg); border-color: var(--baseline-border); }
+  .phase-row-label.hash     { background: var(--hash-bg);     border-color: var(--hash-border); }
+  .phase-row-label.hash .name { color: var(--hash-fg); }
+  .phase-row-label.const    { background: var(--const-bg);    border-color: var(--const-border); }
+  .phase-row-label.const .name { color: var(--const-fg); }
+  .phase-row-label.null     { background: var(--null-bg);     border-color: var(--null-border); }
+  .phase-row-label.null .name { color: var(--null-fg); }
+  .phase-row-label.plain    { background: var(--plain-bg);    border-color: var(--plain-border); }
+  .phase-row-label.plain .name { color: var(--plain-fg); }
+  .phase-row-label.cond     { background: var(--cond-bg);     border-color: var(--cond-border); }
+  .phase-row-label.cond .name { color: var(--cond-fg); }
+  .phase-row-label .branch-pill {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.25);
+    margin-bottom: 4px;
+    align-self: flex-start;
+  }
+  .phase-row-label.headline { box-shadow: inset 0 0 0 2px var(--accent); }
+  .phase-row-label.headline::after {
+    content: "HEADLINE";
+    font-size: 8.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-top: 6px;
+  }
+
+  .phase-cell {
+    background: var(--surface-3);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .phase-cell .rep-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+  .phase-cell .time {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .phase-cell .unit {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+  .phase-cell.empty {
+    background: transparent;
+    border-style: dashed;
+    border-color: var(--border);
+    color: var(--text-faint);
+  }
+  .phase-cell.empty .time { color: var(--text-faint); font-size: 16px; font-weight: 400; }
+
+  .phase-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+  }
+  .phase-summary .median-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+  .phase-summary .median {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .phase-summary .median .credits {
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 500;
+    display: block;
+    margin-top: 2px;
+  }
+  .phase-summary .delta {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .phase-summary .delta.flat { color: var(--flat); background: rgba(148,163,184,0.12); }
+  .phase-summary .delta.down { color: var(--neg);  background: rgba(52,211,153,0.12); }
+  .phase-summary .delta.up   { color: var(--pos);  background: rgba(248,113,113,0.12); }
+
+  /* ===== Phase 4 specific ===== */
+  .p4-matrix {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 14px;
+  }
+  @media (max-width: 800px) {
+    .p4-matrix { grid-template-columns: 1fr; }
+  }
+  .p4-baseline-card {
+    background: var(--baseline-bg);
+    border: 1px solid var(--baseline-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .p4-baseline-card .tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+  .p4-baseline-card .name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 4px;
+  }
+  .p4-baseline-card .formula {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 6px;
+  }
+  .p4-baseline-card .time {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 18px;
+    font-variant-numeric: tabular-nums;
+  }
+  .p4-baseline-card .time-sub {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+
+  .p4-branch-pair {
+    margin-bottom: 14px;
+  }
+  .p4-branch-pair:last-child { margin-bottom: 0; }
+  .pair-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .pair-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .branch-cell {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+  }
+  .branch-cell.headline { border-width: 2px; border-color: var(--accent); }
+  .branch-cell .branch-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .headline-badge {
+    background: var(--accent);
+    color: #0c0d10;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .branch-cell .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 6px;
+  }
+  .branch-cell .formula {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+  .branch-cell .result-line {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-soft);
+  }
+  .branch-cell.hash.plain { background: var(--plain-bg); border-color: var(--plain-border); }
+  .branch-cell.hash.plain .branch-tag { color: var(--plain-fg); }
+  .branch-cell.hash.mask  { background: var(--hash-bg); border-color: var(--hash-border); }
+  .branch-cell.hash.mask .branch-tag { color: var(--hash-fg); }
+  .branch-cell.const.plain { background: var(--plain-bg); border-color: var(--plain-border); }
+  .branch-cell.const.plain .branch-tag { color: var(--plain-fg); }
+  .branch-cell.const.mask  { background: var(--const-bg); border-color: var(--const-border); }
+  .branch-cell.const.mask .branch-tag { color: var(--const-fg); }
+
+  /* ===== 2×2 Quadrant matrix (Phases 3 and 4) ===== */
+  .quadrant {
+    display: grid;
+    grid-template-columns: 130px 1fr 1fr;
+    grid-template-rows: 48px 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .quadrant .q-corner { grid-row: 1; grid-column: 1; }
+  .quadrant .q-col-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+  .quadrant .q-col-header .sub {
+    font-size: 10px;
+    color: var(--text-faint);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 2px;
+    opacity: 0.7;
+  }
+  .quadrant .q-col-header.headline { color: var(--accent); }
+  .quadrant .q-row-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+  }
+  .quadrant .q-row-label .name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .quadrant .q-row-label .formula {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 10.5px;
+    color: var(--text-soft);
+    line-height: 1.4;
+    word-break: break-all;
+  }
+  .quadrant .q-row-label.hash  { background: var(--hash-bg);  border-color: var(--hash-border); }
+  .quadrant .q-row-label.hash .name { color: var(--hash-fg); }
+  .quadrant .q-row-label.const { background: var(--const-bg); border-color: var(--const-border); }
+  .quadrant .q-row-label.const .name { color: var(--const-fg); }
+
+  .q-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 22px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    background: var(--surface-3);
+    position: relative;
+    min-height: 130px;
+  }
+  .q-cell .scenario {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+  .q-cell .median {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .q-cell .median .unit-inline {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+    margin-left: 4px;
+  }
+  .q-cell .delta-pill {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .q-cell .delta-pill.flat { color: var(--flat); background: rgba(148,163,184,0.12); }
+  .q-cell .delta-pill.down { color: var(--neg);  background: rgba(52,211,153,0.14); }
+  .q-cell .delta-pill.up   { color: var(--pos);  background: rgba(248,113,113,0.14); }
+  .q-cell .desc {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 8px;
+  }
+  .q-cell .reps {
+    font-size: 10.5px;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+  .q-cell.headline { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent), 0 0 18px rgba(129,140,248,0.08); }
+  .q-cell.headline .scenario { color: var(--accent); }
+  .q-cell.headline::after {
+    content: "PROD SCENARIO";
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    background: rgba(129,140,248,0.12);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .q-cell.pending {
+    border-style: dashed;
+    background: transparent;
+  }
+  .q-cell.pending .median { color: var(--text-faint); font-size: 22px; font-weight: 500; }
+  .q-cell.pending .delta-pill { background: rgba(148,163,184,0.08); color: var(--text-faint); }
+
+  /* BASELINE reference card below the quadrant */
+  .baseline-ref {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: var(--baseline-bg);
+    border: 1px solid var(--baseline-border);
+    margin-bottom: 16px;
+  }
+  .baseline-ref .label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #9ca3af;
+  }
+  .baseline-ref .median-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+  }
+  .baseline-ref .reps-info {
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+
+  /* Findings */
+  .findings {
+    background: rgba(129,140,248,0.06);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 24px;
+    border-left: 3px solid var(--accent);
+  }
+  .findings h4 {
+    margin: 0 0 10px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .findings ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-soft);
+  }
+  .findings li {
+    margin: 5px 0;
+    font-size: 13.5px;
+  }
+  .findings li strong { color: var(--text); font-weight: 600; }
+
+  footer.page {
+    margin-top: 56px;
+    color: var(--text-faint);
+    font-size: 13px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="page">
+    <h1>Snowflake Masking Tax — Experiment Matrix</h1>
+    <p class="meta">Run ID <code>20260610a</code> · alex.sotis@betfanatics.com · 2026-06-10 · <span style="color:var(--accent);font-weight:600;">V2: quadrant layout</span></p>
+  </header>
+
+  <div class="intro">
+    <h2>What this experiment measures</h2>
+    <p>
+      Quantify the wall-clock and credit cost of adopting Snowflake column masking policies on FES Data
+      workloads. Four phases, increasing realism: a smoke test, a per-row-cost microbenchmark, a
+      production-realistic dbt model rebuild, and a real consumer query pattern (Growthloop).
+    </p>
+    <p>
+      Each phase tests a defined matrix of <em>policy variants</em> (no masking, SHA2 hash, constant-return,
+      role-conditional) and <em>role contexts</em> (user has PII access vs. doesn't). The view-based PII
+      handling alternative is out of scope.
+    </p>
+  </div>
+
+
+  <!-- ================== PHASE 1 ================== -->
+  <section class="phase">
+    <div class="phase-header">
+      <div>
+        <div class="phase-title-row">
+          <span class="phase-num">Phase 1</span>
+          <h3 class="phase-title">Synthetic smoke test</h3>
+        </div>
+        <p class="phase-tagline">Validate the harness produces a directionally-correct, non-zero P_HASH vs BASELINE delta before committing to larger phases.</p>
+      </div>
+      <span class="phase-status"><span class="dot"></span>Complete</span>
+    </div>
+    <div class="phase-body">
+      <dl class="specs">
+        <div class="spec"><dt>Table</dt><dd>Synthetic, 1M rows, 12 cols</dd></div>
+        <div class="spec"><dt>Warehouse</dt><dd><code>FDE_DEVELOPER_XS_WH</code> (XS)</dd></div>
+        <div class="spec"><dt>Reps</dt><dd>10 each, drop first 2</dd></div>
+        <div class="spec"><dt>Cells</dt><dd>2</dd></div>
+      </dl>
+
+      <div class="section-label">Matrix · Variant × Q2 result</div>
+      <div class="phase-matrix m-single">
+        <div class="col-header first">Variant</div>
+        <div class="col-header">Q2: COUNT(DISTINCT email)</div>
+        <div class="col-header summary">Result &amp; Δ</div>
+
+        <div class="phase-row-label baseline">
+          <div class="name">BASELINE</div>
+          <div class="formula">no policy</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Median of 8 reps</div>
+          <div class="time">187</div>
+          <div class="unit">ms</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Median</div>
+          <div class="median">187 ms</div>
+          <div class="delta flat">reference</div>
+        </div>
+
+        <div class="phase-row-label hash">
+          <div class="name">P_HASH</div>
+          <div class="formula">SHA2(val, 256)</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Median of 8 reps</div>
+          <div class="time">280</div>
+          <div class="unit">ms</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Median</div>
+          <div class="median">280 ms</div>
+          <div class="delta up">+50% ✓</div>
+        </div>
+      </div>
+
+      <div class="findings">
+        <h4>Outcome</h4>
+        <ul>
+          <li>Harness produced a clean, non-zero, directionally-correct signal. Cleared the gate for Phase 2.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================== PHASE 2 ================== -->
+  <section class="phase">
+    <div class="phase-header">
+      <div>
+        <div class="phase-title-row">
+          <span class="phase-num">Phase 2</span>
+          <h3 class="phase-title">Microbenchmark (decomposition)</h3>
+        </div>
+        <p class="phase-tagline">Isolate per-row mask cost across policy variants, query patterns, and role branches. Useful for understanding cost structure — but overstates production tax (worst-case isolation).</p>
+      </div>
+      <span class="phase-status"><span class="dot"></span>Complete</span>
+    </div>
+    <div class="phase-body">
+      <dl class="specs">
+        <div class="spec"><dt>Table</dt><dd>Clone of <code>FANGRAPH.ADMIN.FANGRAPH</code> (190M rows)</dd></div>
+        <div class="spec"><dt>Masked col</dt><dd>1 (<code>FANGRAPH_EMAIL</code>); +1 multi-col cell, 4 cols</dd></div>
+        <div class="spec"><dt>Warehouse</dt><dd><code>FDE_DEVELOPER_SM_WH</code> (SMALL)</dd></div>
+        <div class="spec"><dt>Reps</dt><dd>10 each, drop first 2</dd></div>
+        <div class="spec"><dt>Total cells</dt><dd>24</dd></div>
+      </dl>
+
+      <div class="section-label">Matrix · Variant × Query (median ms)</div>
+      <div class="phase-matrix m-q3">
+        <div class="col-header first">Variant</div>
+        <div class="col-header">Q1<br/><span style="font-weight:400;color:var(--text-soft);text-transform:none;letter-spacing:0;">MAX(LENGTH(email))</span></div>
+        <div class="col-header">Q2<br/><span style="font-weight:400;color:var(--text-soft);text-transform:none;letter-spacing:0;">COUNT(DISTINCT)</span></div>
+        <div class="col-header">Q3<br/><span style="font-weight:400;color:var(--text-soft);text-transform:none;letter-spacing:0;">WHERE email = 'x'</span></div>
+        <div class="col-header summary">Δ range</div>
+
+        <!-- BASELINE -->
+        <div class="phase-row-label baseline">
+          <div class="name">BASELINE</div>
+          <div class="formula">no policy</div>
+        </div>
+        <div class="phase-cell"><div class="time">1,544</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">6,728</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">1,206</div><div class="unit">ms</div></div>
+        <div class="phase-summary">
+          <div class="median-label">vs baseline</div>
+          <div class="median" style="font-size:18px;">reference</div>
+        </div>
+
+        <!-- P_NULL -->
+        <div class="phase-row-label null">
+          <div class="name">P_NULL</div>
+          <div class="formula">→ NULL</div>
+        </div>
+        <div class="phase-cell"><div class="time">151</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">595</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">108</div><div class="unit">ms</div></div>
+        <div class="phase-summary">
+          <div class="median-label">Optimizer elides</div>
+          <div class="delta down">−90 to −91%</div>
+        </div>
+
+        <!-- P_HASH -->
+        <div class="phase-row-label hash">
+          <div class="name">P_HASH</div>
+          <div class="formula">SHA2(val, 256)</div>
+        </div>
+        <div class="phase-cell"><div class="time">3,586</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">14,248</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">3,496</div><div class="unit">ms</div></div>
+        <div class="phase-summary">
+          <div class="median-label">Tax range</div>
+          <div class="delta up">+112 to +190%</div>
+        </div>
+
+        <!-- P_COND_ISR / plaintext -->
+        <div class="phase-row-label plain">
+          <span class="branch-pill">Has PII</span>
+          <div class="name">P_COND_ISR</div>
+          <div class="formula">plaintext branch</div>
+        </div>
+        <div class="phase-cell"><div class="time">1,478</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">6,952</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">1,293</div><div class="unit">ms</div></div>
+        <div class="phase-summary">
+          <div class="median-label">Tax range</div>
+          <div class="delta flat">−4 to +7%</div>
+        </div>
+
+        <!-- P_COND_ISR / masked -->
+        <div class="phase-row-label hash">
+          <span class="branch-pill">No PII</span>
+          <div class="name">P_COND_ISR</div>
+          <div class="formula">masked branch (SHA2)</div>
+        </div>
+        <div class="phase-cell"><div class="time">3,551</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">14,298</div><div class="unit">ms</div></div>
+        <div class="phase-cell"><div class="time">3,392</div><div class="unit">ms</div></div>
+        <div class="phase-summary">
+          <div class="median-label">Tax range</div>
+          <div class="delta up">+113 to +181%</div>
+        </div>
+      </div>
+
+      <div class="section-label">Multi-column scaling · Q_MC (4 masked cols projected)</div>
+      <div class="phase-matrix m-single">
+        <div class="col-header first">Variant</div>
+        <div class="col-header">Q_MC: MAX(LENGTH) × 4 cols</div>
+        <div class="col-header summary">vs single-col baseline</div>
+
+        <div class="phase-row-label baseline">
+          <div class="name">BASELINE_4COL</div>
+          <div class="formula">no policy</div>
+        </div>
+        <div class="phase-cell">
+          <div class="time">2,892</div>
+          <div class="unit">ms</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">vs baseline</div>
+          <div class="delta flat">reference</div>
+        </div>
+
+        <div class="phase-row-label hash">
+          <div class="name">P_HASH_4COL</div>
+          <div class="formula">SHA2 on all 4 cols</div>
+        </div>
+        <div class="phase-cell">
+          <div class="time">9,240</div>
+          <div class="unit">ms</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Tax</div>
+          <div class="delta up">+219%</div>
+        </div>
+      </div>
+
+      <div class="findings">
+        <h4>Findings</h4>
+        <ul>
+          <li><strong>P_COND_ISR ≈ P_COND</strong> within 1% — <code>IS_ROLE_IN_SESSION()</code> costs no more than primary-role check.</li>
+          <li><strong>P_NULL is ~90% faster than baseline</strong> — optimizer elides constant-projection scans.</li>
+          <li><strong>Predicate-on-masked is the worst case (+181%)</strong> — loses pushdown.</li>
+          <li><strong>Plaintext-branch tax is small</strong> (+3 to +7%) — users with unmask barely pay.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================== PHASE 3 ================== -->
+  <section class="phase">
+    <div class="phase-header">
+      <div>
+        <div class="phase-title-row">
+          <span class="phase-num">Phase 3</span>
+          <h3 class="phase-title">Production-realistic fangraph rebuild</h3>
+        </div>
+        <p class="phase-tagline">Apply 45-column PII masking to <code>fangraph_base</code> and <code>fangraph_snapshots</code>, then rebuild the <code>fangraph</code> dbt model on the prod warehouse size — what the daily Airflow pipeline would actually pay.</p>
+      </div>
+      <span class="phase-status"><span class="dot"></span>Complete</span>
+    </div>
+    <div class="phase-body">
+      <dl class="specs">
+        <div class="spec"><dt>Sources</dt><dd><code>fangraph_base</code> (190M), <code>fangraph_snapshots</code> (1.14B)</dd></div>
+        <div class="spec"><dt>Masked cols</dt><dd>45 (39 STRING + 4 NUMBER + 2 DATE)</dd></div>
+        <div class="spec"><dt>Warehouse</dt><dd><code>FDE_DEVELOPER_3XL_WH</code> (3XL · prod size)</dd></div>
+        <div class="spec"><dt>Query</dt><dd>Full <code>fangraph.sql</code> dbt model</dd></div>
+        <div class="spec"><dt>Total runs</dt><dd>7 (3 + 3 + 1)</dd></div>
+      </dl>
+
+      <div class="section-label">Matrix · Variant × Role-branch</div>
+
+      <div class="baseline-ref">
+        <span class="label">BASELINE · no policy</span>
+        <span class="reps-info">2026-06-10: 3 reps, median 291.1 s · 2026-06-11: 1 rep, 287.7 s on fresh clone</span>
+        <span class="median-val">~290 s</span>
+      </div>
+
+      <div class="quadrant">
+        <div class="q-corner"></div>
+        <div class="q-col-header headline">
+          Has PII role
+          <div class="sub">plaintext branch · prod path</div>
+        </div>
+        <div class="q-col-header">
+          No PII role
+          <div class="sub">masked branch · context only</div>
+        </div>
+
+        <div class="q-row-label hash">
+          <div class="name">HASH</div>
+          <div class="formula">SHA2 / HASH / DATE_TRUNC</div>
+        </div>
+        <!-- HASH × HAS PII (plaintext) -->
+        <div class="q-cell headline">
+          <div class="scenario">Pipeline allowlisted</div>
+          <div class="median">282.2<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">−1.9% (noise)</span>
+          <div class="desc">Airflow has PII access · projects plaintext PII forward · 4.977 credits</div>
+          <div class="reps">1 rep · 2026-06-11 baseline 287.7 s</div>
+        </div>
+        <!-- HASH × NO PII (masked) -->
+        <div class="q-cell">
+          <div class="scenario">Pipeline not allowlisted</div>
+          <div class="median">290.6<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">−0.2% vs baseline</span>
+          <div class="desc">Fangraph built with SHA2 hashes · 5.043 credits</div>
+          <div class="reps">3 reps · 288.4 / 306.8 / 290.6 (2026-06-10 baseline 291.1 s)</div>
+        </div>
+
+        <div class="q-row-label const">
+          <div class="name">CONST</div>
+          <div class="formula">'***MASKED***' / NULL / NULL</div>
+        </div>
+        <!-- CONST × HAS PII (plaintext) -->
+        <div class="q-cell headline">
+          <div class="scenario">Pipeline allowlisted</div>
+          <div class="median">275.6<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">−4.2% (noise)</span>
+          <div class="desc">Airflow has PII access · projects plaintext forward · 4.820 credits</div>
+          <div class="reps">1 rep · 2026-06-11 baseline 287.7 s</div>
+        </div>
+        <!-- CONST × NO PII (masked) -->
+        <div class="q-cell">
+          <div class="scenario">Pipeline not allowlisted</div>
+          <div class="median">248.9<span class="unit-inline">s</span></div>
+          <span class="delta-pill down">−14.5% vs baseline</span>
+          <div class="desc">Optimizer elides PII column scans · 4.36 credits</div>
+          <div class="reps">1 rep · 2026-06-10 baseline 291.1 s</div>
+        </div>
+      </div>
+
+      <div style="display:none">
+      <div class="phase-matrix m-rep3">
+        <div class="col-header first">Variant</div>
+        <div class="col-header">Rep 01</div>
+        <div class="col-header">Rep 02</div>
+        <div class="col-header">Rep 03</div>
+        <div class="col-header summary">Median &amp; Δ</div>
+
+        <!-- BASELINE row -->
+        <div class="phase-row-label baseline">
+          <div class="name">BASELINE</div>
+          <div class="formula">no policy</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 01</div>
+          <div class="time">278.1</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 02</div>
+          <div class="time">291.1</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 03</div>
+          <div class="time">292.1</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Median</div>
+          <div class="median">291.1 s<span class="credits">5.10 credits</span></div>
+          <div class="delta flat">reference</div>
+        </div>
+
+        <!-- HASH row -->
+        <div class="phase-row-label hash">
+          <div class="name">HASH</div>
+          <div class="formula">SHA2 / HASH / DATE_TRUNC</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 01</div>
+          <div class="time">288.4</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 02</div>
+          <div class="time">306.8</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 03</div>
+          <div class="time">290.6</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Median</div>
+          <div class="median">290.6 s<span class="credits">5.04 credits</span></div>
+          <div class="delta flat">−0.2% · within noise</div>
+        </div>
+
+        <!-- CONST row -->
+        <div class="phase-row-label const">
+          <div class="name">CONST</div>
+          <div class="formula">'***MASKED***' / NULL / NULL</div>
+        </div>
+        <div class="phase-cell">
+          <div class="rep-label">Rep 01</div>
+          <div class="time">248.9</div>
+          <div class="unit">sec</div>
+        </div>
+        <div class="phase-cell empty">
+          <div class="rep-label">Rep 02</div>
+          <div class="time">—</div>
+        </div>
+        <div class="phase-cell empty">
+          <div class="rep-label">Rep 03</div>
+          <div class="time">—</div>
+        </div>
+        <div class="phase-summary">
+          <div class="median-label">Single rep</div>
+          <div class="median">248.9 s<span class="credits">4.36 credits</span></div>
+          <div class="delta down">−14.5% faster than baseline</div>
+        </div>
+      </div>
+      </div><!-- /hidden legacy matrix -->
+
+      <div class="findings">
+        <h4>Findings</h4>
+        <ul>
+          <li><strong>Production scenario</strong> (pipeline allowlisted, plaintext branch): <strong>essentially zero tax.</strong> HASH/plaintext came in at 282.2 s vs 287.7 s baseline (−1.9%, within noise); CONST/plaintext at 275.6 s (−4.2%, also noise). With Airflow's service role in the policy allow-list, the masking adds no measurable cost to the daily fangraph rebuild on the prod 3XL warehouse.</li>
+          <li><strong>Pessimistic scenario</strong> (pipeline NOT allowlisted, masked branch): hash masking essentially free (−0.2%, within noise); constant masking actually <em>14.5% faster</em> than baseline — the optimizer elides the column scan for constant projections.</li>
+          <li><strong>HASH/plaintext ≈ CONST/plaintext</strong> (282.2 s ≈ 275.6 s) — confirms both hit the <code>THEN val</code> branch; the unused <code>ELSE</code> doesn't matter.</li>
+          <li><strong>Correctness caveat:</strong> if masked sources feed the <code>column_intersection_row_hash</code> macro, deterministic masking (SHA2 or const) means upstream PII changes won't trigger row-hash mismatches — <code>fangraph_last_updated_timestamp</code> won't bump. Argues against masking source tables for change-detection-dependent models.</li>
+          <li><strong>Two-day caveat:</strong> baselines were 291.1 s (3-rep median, 2026-06-10) vs 287.7 s (single rep, 2026-06-11) — within 1.2% of each other. Plaintext-branch deltas are computed against same-day baseline (287.7); masked-branch deltas use the day-before baseline (291.1). Underlying clones are zero-copy of <code>FANGRAPH.ADMIN.FANGRAPH_BASE</code>/<code>_SNAPSHOTS</code> at their respective points in time.</li>
+          <li><strong>Verified controls:</strong> zero warehouse contention; all runs on 3XL; result cache disabled; cold-start consistent.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================== PHASE 4 ================== -->
+  <section class="phase">
+    <div class="phase-header">
+      <div>
+        <div class="phase-title-row">
+          <span class="phase-num">Phase 4</span>
+          <h3 class="phase-title">Growthloop consumer query (audience export)</h3>
+        </div>
+        <p class="phase-tagline">FES builds <code>fangraph</code>; consumers query it. Growthloop runs ~1,200 queries/3 days on Large — they're the most prolific PII consumer. Tests one of their representative audience-export queries.</p>
+      </div>
+      <span class="phase-status"><span class="dot"></span>Complete</span>
+    </div>
+    <div class="phase-body">
+      <dl class="specs">
+        <div class="spec"><dt>Table</dt><dd>Clone of <code>fangraph.admin.fangraph</code> (190M rows)</dd></div>
+        <div class="spec"><dt>Masked cols</dt><dd>45 PII (7 referenced by query)</dd></div>
+        <div class="spec"><dt>Warehouse</dt><dd><code>FDE_DEVELOPER_LG_WH</code> (LARGE · matches <code>FDE_GROWTHLOOP_WH</code>)</dd></div>
+        <div class="spec"><dt>Query</dt><dd>Inner growthloop audience subquery (80 cols, row_number)</dd></div>
+        <div class="spec"><dt>Reps</dt><dd>1 each (BASELINE × 2 for variance check)</dd></div>
+        <div class="spec"><dt>Total cells</dt><dd>5</dd></div>
+      </dl>
+
+      <div class="section-label">Matrix · Variant × Role-branch</div>
+
+      <div class="baseline-ref">
+        <span class="label">BASELINE · no policy</span>
+        <span class="reps-info">2 reps · mean of 109.1 and 117.5 s · 144 GB scanned</span>
+        <span class="median-val">113.3 s</span>
+      </div>
+
+      <div class="quadrant">
+        <div class="q-corner"></div>
+        <div class="q-col-header headline">
+          Has PII role
+          <div class="sub">plaintext branch · prod path</div>
+        </div>
+        <div class="q-col-header">
+          No PII role
+          <div class="sub">masked branch · context only</div>
+        </div>
+
+        <div class="q-row-label hash">
+          <div class="name">HASH</div>
+          <div class="formula">SHA2(val, 256)</div>
+        </div>
+        <!-- HASH × HAS PII (plaintext) -->
+        <div class="q-cell headline">
+          <div class="scenario">Growthloop today</div>
+          <div class="median">111.2<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">+2.0% vs baseline</span>
+          <div class="desc">Role in allowlist → returns <code style="font-size:11px;">val</code> · 0.243 credits</div>
+          <div class="reps">1 rep</div>
+        </div>
+        <!-- HASH × NO PII (masked) -->
+        <div class="q-cell">
+          <div class="scenario">If access lost</div>
+          <div class="median">118.7<span class="unit-inline">s</span></div>
+          <span class="delta-pill up">+4.8% vs baseline</span>
+          <div class="desc">Returns <code style="font-size:11px;">SHA2(val, 256)</code> · 0.261 credits</div>
+          <div class="reps">1 rep</div>
+        </div>
+
+        <div class="q-row-label const">
+          <div class="name">CONST</div>
+          <div class="formula">'***MASKED***'</div>
+        </div>
+        <!-- CONST × HAS PII (plaintext) -->
+        <div class="q-cell headline">
+          <div class="scenario">Growthloop today</div>
+          <div class="median">109.9<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">+0.7% vs baseline</span>
+          <div class="desc">Role in allowlist → returns <code style="font-size:11px;">val</code> · 0.242 credits</div>
+          <div class="reps">1 rep</div>
+        </div>
+        <!-- CONST × NO PII (masked) -->
+        <div class="q-cell">
+          <div class="scenario">If access lost</div>
+          <div class="median">98.3<span class="unit-inline">s</span></div>
+          <span class="delta-pill down">−13.3% vs baseline</span>
+          <div class="desc">Optimizer elides PII column scans · 0.214 credits</div>
+          <div class="reps">1 rep</div>
+        </div>
+      </div>
+
+      <div class="findings">
+        <h4>Findings</h4>
+        <ul>
+          <li><strong>For growthloop (has PII role):</strong> adopting hash masking adds <strong>+2.0%</strong>, const masking adds <strong>+0.7%</strong>. Both well within noise — essentially free for their real workload.</li>
+          <li><strong>HASH plaintext ≈ CONST plaintext</strong> (111.2s ≈ 109.9s) — confirmed: both hit the <code>THEN val</code> branch; the unused <code>ELSE</code> doesn't matter.</li>
+          <li><strong>Even masked-branch tax is small (+5%)</strong> on Large warehouse — vastly less than Phase 2's +113% microbenchmark prediction. Parallelism + workload dilution at scale.</li>
+          <li><strong>Constant masking is &gt;10% faster</strong> than baseline on the masked branch — optimizer elides constant projections.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== PHASE 5 ================== -->
+  <section class="phase">
+    <div class="phase-header">
+      <div>
+        <div class="phase-title-row">
+          <span class="phase-num">Phase 5</span>
+          <h3 class="phase-title">Small-warehouse real model (<code>imprint_fg_us_customers</code>)</h3>
+        </div>
+        <p class="phase-tagline">Phases 1 and 2 microbenchmarks predicted small warehouses might suffer large tax (+110–180%). Phases 3 (3XL) and 4 (Large) showed near-zero. Pick a real production model that runs on a Small warehouse and projects PII — see if the warehouse-size prediction holds at the model-rebuild level.</p>
+      </div>
+      <span class="phase-status"><span class="dot"></span>Complete</span>
+    </div>
+    <div class="phase-body">
+      <dl class="specs">
+        <div class="spec"><dt>Target model</dt><dd><code>imprint_fg_us_customers</code> in <code>fde_imprint</code></dd></div>
+        <div class="spec"><dt>Source</dt><dd>Clone of <code>FANGRAPH.ADMIN.FANGRAPH</code> (189.9M rows)</dd></div>
+        <div class="spec"><dt>Warehouse</dt><dd><code>FDE_DEVELOPER_SM_WH</code> (Small · matches model's dev profile)</dd></div>
+        <div class="spec"><dt>Masked cols</dt><dd>45 attached, 9 actually touched: 7 in projection (email, first/last name, address_1/2, phone, dob) + 2 in WHERE filter (first_name, last_name)</dd></div>
+        <div class="spec"><dt>Output</dt><dd>~41M rows (US customers with at least one OpCo relationship)</dd></div>
+        <div class="spec"><dt>Total cells</dt><dd>5 (1 rep each)</dd></div>
+      </dl>
+
+      <div class="section-label">Matrix · Variant × Role-branch</div>
+
+      <div class="baseline-ref">
+        <span class="label">BASELINE · no policy</span>
+        <span class="reps-info">Single rep · 41,076,037 rows produced · 72.1 GB scanned</span>
+        <span class="median-val">29.1 s</span>
+      </div>
+
+      <div class="quadrant">
+        <div class="q-corner"></div>
+        <div class="q-col-header headline">
+          Has PII role
+          <div class="sub">plaintext branch · prod path</div>
+        </div>
+        <div class="q-col-header">
+          No PII role
+          <div class="sub">masked branch · context only</div>
+        </div>
+
+        <div class="q-row-label hash">
+          <div class="name">HASH</div>
+          <div class="formula">SHA2 / HASH / DATE_TRUNC</div>
+        </div>
+        <div class="q-cell headline">
+          <div class="scenario">Has PII role</div>
+          <div class="median">27.6<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">−5.2% (noise)</span>
+          <div class="desc">Plaintext branch — role check evaluates but mask transformation never fires. 0.0148 credits.</div>
+          <div class="reps">1 rep · 41.1M rows produced</div>
+        </div>
+        <div class="q-cell">
+          <div class="scenario">No PII role</div>
+          <div class="median">36.1<span class="unit-inline">s</span></div>
+          <span class="delta-pill up">+24.1% vs baseline</span>
+          <div class="desc">Per-row SHA2 fires across 9 column touches × ~41M rows. Real tax on Small WH. 0.0187 credits.</div>
+          <div class="reps">1 rep · 41.1M rows produced</div>
+        </div>
+
+        <div class="q-row-label const">
+          <div class="name">CONST</div>
+          <div class="formula">'***MASKED***' / NULL / NULL</div>
+        </div>
+        <div class="q-cell headline">
+          <div class="scenario">Has PII role</div>
+          <div class="median">27.8<span class="unit-inline">s</span></div>
+          <span class="delta-pill flat">−4.5% (noise)</span>
+          <div class="desc">Plaintext branch — same as HASH/plaintext. Confirms unused ELSE doesn't matter. 0.0150 credits.</div>
+          <div class="reps">1 rep · 41.1M rows produced</div>
+        </div>
+        <div class="q-cell">
+          <div class="scenario">No PII role</div>
+          <div class="median">21.5<span class="unit-inline">s</span></div>
+          <span class="delta-pill down">−26.1% vs baseline</span>
+          <div class="desc">Optimizer elides constant projections. Even with 41.9M output rows (more than baseline due to NULL → '***MASKED***' bypassing IS NOT NULL filter), runtime drops. 0.0111 credits.</div>
+          <div class="reps">1 rep · 41.9M rows produced</div>
+        </div>
+      </div>
+
+      <div class="findings">
+        <h4>Findings</h4>
+        <ul>
+          <li><strong>Small warehouse DOES show measurable tax on the masked branch (+24%)</strong> — significantly less than Phase 2's microbenchmark predicted (+110–180%) but not zero like Phase 3 (3XL, ~0%) and Phase 4 (Large, +5%). Warehouse size matters; smaller warehouses have less parallelism to absorb per-row mask cost.</li>
+          <li><strong>Plaintext branch is still essentially free</strong> (−4.5% to −5.2%, within noise) regardless of warehouse size. Users with PII access never see meaningful slowdown.</li>
+          <li><strong>Const masking is &gt;25% faster than baseline on the masked branch</strong> — optimizer elides constant projections even on Small. Same effect as Phase 3 (3XL) and Phase 4 (Large). The cost saving compounds at smaller warehouse sizes.</li>
+          <li><strong>Const masking changed semantics:</strong> CONST/EXCLUDED produced 41.9M rows vs baseline's 41.1M because <code>NULL fangraph_last_name</code> becomes <code>'***MASKED***'</code>, bypassing the <code>IS NOT NULL</code> WHERE filter. Worth flagging — semantic correctness, not just performance.</li>
+          <li><strong>Trend across warehouse sizes:</strong>
+            <table style="margin-top:6px;border-collapse:collapse;font-size:13px;">
+              <tr><th style="text-align:left;padding:4px 12px 4px 0;color:var(--text-faint);">Warehouse</th><th style="text-align:right;padding:4px 12px;color:var(--text-faint);">HASH/masked tax</th><th style="text-align:right;padding:4px 12px;color:var(--text-faint);">Phase</th></tr>
+              <tr><td style="padding:2px 12px 2px 0;">SMALL (microbench, Q2)</td><td style="text-align:right;padding:2px 12px;">+113%</td><td style="text-align:right;padding:2px 12px;color:var(--text-soft);">P2</td></tr>
+              <tr><td style="padding:2px 12px 2px 0;">SMALL (real model, this phase)</td><td style="text-align:right;padding:2px 12px;color:var(--hash-fg);font-weight:600;">+24%</td><td style="text-align:right;padding:2px 12px;color:var(--text-soft);">P5</td></tr>
+              <tr><td style="padding:2px 12px 2px 0;">LARGE (real model)</td><td style="text-align:right;padding:2px 12px;">+5%</td><td style="text-align:right;padding:2px 12px;color:var(--text-soft);">P4</td></tr>
+              <tr><td style="padding:2px 12px 2px 0;">3X-LARGE (real model)</td><td style="text-align:right;padding:2px 12px;">−0.2%</td><td style="text-align:right;padding:2px 12px;color:var(--text-soft);">P3</td></tr>
+            </table>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="page">
+    V2 · 2×2 quadrant layout for Phases 3 and 4 · Phase 5 design pending · Methodology in <code>test_plan.md</code> · <code>report.md</code> · v1 layout: <code>report.html</code> · Resume: <code>RESUME_INSTRUCTIONS.md</code>
+  </footer>
+
+</div>
+</body>
+</html>
